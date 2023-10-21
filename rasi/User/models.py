@@ -8,7 +8,7 @@ class User(models.Model):
     regimen = models.CharField(max_length=50)
     contact = models.CharField(max_length=10)
     entity = models.CharField(max_length=50, null=True)
-
+    role = models.CharField(max_length=50, null=True)
     tipoIdentificacion = models.CharField(max_length=50)
     correo = models.CharField(max_length=50, unique=True)
 

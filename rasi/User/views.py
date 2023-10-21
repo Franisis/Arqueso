@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
@@ -12,7 +13,7 @@ def users_view(request):
         users = ul.get_users()
         users_dto = serializers.serialize('json', users)
         return HttpResponse(users_dto, 'application/json')
-    if request.method == 'POST':
+    elif request.method == 'POST':
         form = PatientForm(request.POST)
         if form.is_valid():
             form.save()
@@ -24,6 +25,12 @@ def users_view(request):
             return HttpResponseRedirect(reverse('userCreate'))
         else:
             print(form.errors)
+    elif request.method=='PUT':
+        id = request.GET.get("id", None)
+        user_dto = ul.update_rol(id, json.loads(request.body))
+        user = serializers.serialize('json', [user_dto,])
+        return HttpResponse(user, 'application/json')
+        
     else:
         form = PatientForm()
 
