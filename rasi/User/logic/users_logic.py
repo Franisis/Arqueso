@@ -5,7 +5,7 @@ def get_users():
     return users
 
 def get_user(var_pk):
-    user = User.objects.get(pk=var_pk)
+    user = User.objects.get(identification=var_pk)
     return user
 
 def update_rol(user_pk, new_var):
