@@ -8,12 +8,21 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .forms import MedicalProfessionalForm, PatientForm
 # Create your views here.
 
-def users_view(request):
+def userGet(request):
     if request.method=='GET':
         users = ul.get_users()
         users_dto = serializers.serialize('json', users)
         return HttpResponse(users_dto, 'application/json')
-    elif request.method == 'POST':
+    
+def userPut(request):
+    if request.method=='PUT':
+        id = request.GET.get("id", None)
+        user_dto = ul.update_rol(id, json.loads(request.body))
+        user = serializers.serialize('json', [user_dto,])
+        return HttpResponse(user, 'application/json')
+    
+def userPost(request):
+    if request.method == 'POST':
         form = PatientForm(request.POST)
         if form.is_valid():
             form.save()
@@ -25,16 +34,4 @@ def users_view(request):
             return HttpResponseRedirect(reverse('userCreate'))
         else:
             print(form.errors)
-    elif request.method=='PUT':
-        id = request.GET.get("id", None)
-        user_dto = ul.update_rol(id, json.loads(request.body))
-        user = serializers.serialize('json', [user_dto,])
-        return HttpResponse(user, 'application/json')
-        
-    else:
-        form = PatientForm()
 
-    context = {
-        'form': form,
-    }
-    return render(request, 'Variable/variableCreate.html', context)
