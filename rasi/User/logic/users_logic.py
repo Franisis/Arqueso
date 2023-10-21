@@ -10,6 +10,6 @@ def get_user(var_pk):
 
 def update_rol(user_pk, new_var):
     user = get_user(user_pk)
-    user.role = new_var["rol"]
+    user.role = new_var["role"]
     user.save()
     return user
