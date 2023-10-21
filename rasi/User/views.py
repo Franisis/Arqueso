@@ -16,8 +16,7 @@ def userGet(request):
     
 def userPut(request):
     if request.method=='PUT':
-        id = request.GET.get("pk", None)
-        print(json.loads(request.body))
+        id = json.loads(request.body)['pk']
         user_dto = ul.update_rol(id, json.loads(request.body))
         user = serializers.serialize('json', [user_dto,])
         return HttpResponse(user, 'application/json')
