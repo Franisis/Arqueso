@@ -37,6 +37,6 @@ def userPost(request):
     else:
         form = PatientForm()
     context={'form':form,}
-    return render(request, 'User/userCreate.html, context')
+    return HttpResponse(context)
 
 

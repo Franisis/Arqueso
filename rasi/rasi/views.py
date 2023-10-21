@@ -5,4 +5,4 @@ def index(request):
     return render(request, 'index.html')
 
 def healthCheck(request):
-    return HttpResponse('Estoy vivo perro hpta')
+    return HttpResponse('ok')
