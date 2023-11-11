@@ -11,9 +11,4 @@ class ResultForm(forms.ModelForm):
             'apreciation',
 
         ]
-        labels = {
-            'result': 'Result',
-            #datetime: 'Datetime',
-            'meaurement': 'Measurement', 
-            'apreciation': 'Apreciation',
-        }
+        
