@@ -18,6 +18,7 @@ def get_results(request):
 
 def createResults(request):
     if request.method == 'POST':
+        print(request)
         form = ResultForm(request.POST)
         if form.is_valid():
             form.save()
