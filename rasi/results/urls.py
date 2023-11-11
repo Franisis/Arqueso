@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('results/', views.get_results), 
-    path('resultCreate/', csrf_exempt(views.createResults, name = 'createResults'))
+    path('resultCreate/', csrf_exempt(views.createResults), name = 'createResults')
     
 ]
 
