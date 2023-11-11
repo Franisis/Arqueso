@@ -17,13 +17,19 @@ def get_results(request):
         return HttpResponse(results_dto, 'application/json')
 
 def createResults(request):
-    form = ResultForm(request.POST)
-    if form.is_valid():
-        form.save()
-        messages.add_message(request, message="Succesfully created result")
-        return HttpResponseRedirect(reverse("resultCreate"))
-    else: 
-        print(form.errors)
-    context={'form':form,}
+    if request.method == 'POST':
+        form = ResultForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Successfully created result')
+            return HttpResponseRedirect(reverse('resultCreate'))
+        else:
+            print(form.errors)
+    else:
+        form = ResultForm()
+    context={'form': form,}
     return HttpResponse(context)
+
+        
+    
 # Create your views here.
