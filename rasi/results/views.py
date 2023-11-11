@@ -15,6 +15,7 @@ def get_results(request):
         results = lr.getResults()
         results_dto = serializers.serialize('json', results)
         return HttpResponse(results_dto, 'application/json')
+
 def createResults(request):
     form = ResultForm(request.POST)
     if form.is_valid():
