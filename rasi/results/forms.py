@@ -7,13 +7,13 @@ class ResultForm(forms.ModelForm):
         fields = [
             'result',
             #datetime
-            'measurement', 
+            'meaurement', 
             'apreciation',
 
         ]
         labels = {
             'result': 'Result',
             #datetime: 'Datetime',
-            'measurement': 'Measurement', 
+            'meaurement': 'Measurement', 
             'apreciation': 'Apreciation',
         }
