@@ -6,7 +6,7 @@ from django.db import models
 class Results(models.Model):
     
     identification = models.CharField(max_length=50)
-    resultado = models.CharField(max_length=50 )
+    resultado = models.CharField( )
     medition = models.CharField(max_length=50)
     apreciation = models.CharField(max_length=50)
     dateCreated = models.DateField(auto_now_add=True)
