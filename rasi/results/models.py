@@ -6,16 +6,14 @@ from django.db import models
 class Results(models.Model):
     
     identification = models.CharField(max_length=50)
-    resultado = models.CharField(
-        max_length=50, 
-        )
+    result = models.CharField(max_length=50 )
     medition = models.CharField(max_length=50)
     apreciation = models.CharField(max_length=50)
     
     class Meta:
         constraints=[
             models.CheckConstraint(
-                check=models.Q(resultado__in = ["positivo", "negativo", "inconcluso"],)
+                check=models.Q(result__in = ["positivo", "negativo", "inconcluso"],)
                 ,name = 'resultados_permitidos'
             )
         ]
