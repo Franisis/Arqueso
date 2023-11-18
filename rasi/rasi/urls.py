@@ -25,5 +25,4 @@ urlpatterns = [
     path('', include('registerUser.urls')), 
     path('health-check/', views.healthCheck),
     path('', include('Results.urls'))
-
 ]
