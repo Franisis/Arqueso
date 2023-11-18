@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'User',
     'results',
     'social_django',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -149,7 +149,7 @@ SOCIAL_AUTH_AUTH0_SCOPE = [
 ]
 
 AUTHENTICATION_BACKENDS = {
-    'monitoring.auth0backend.Auth0',
+    'rasi.auth0backend.Auth0',
     'django.contrib.auth.backends.ModelBackend',
 }
 
