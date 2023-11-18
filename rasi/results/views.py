@@ -6,13 +6,13 @@ from .forms import resultsForm
 from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-import rasi.auth0backend as ab
+from rasi.rasi.auth0backend import getRole
+
 
 # Create your views here.
 @login_required
 def resultGet(request):
-    role = ab.getRole(request)
-    if request.method=='GET':
+        r = getRole(request)
         results = rl.get_results()
         results_dto = serializers.serialize('json', results)
         return HttpResponse(results_dto, "application/json" )
@@ -20,7 +20,8 @@ def resultGet(request):
     
 @login_required
 def resultPost(request):
-    r = ab.getRole(request)
+    r = getRole(request)
+    print(r)
     if r == "medic":
         if request.method=='POST':
             form = resultsForm(request.POST)

@@ -5,7 +5,7 @@ class Auth0(BaseOAuth2):
     """Auth0 OAuth authentication backend"""
     name = 'auth0'
     SCOPE_SEPARATOR = ' '
-    ACCESS_TOKEN_METHOD = 'POST'
+    ACCESS_TOKEN_METHOD = 'GET'
     EXTRA_DATA = [
         ('picture', 'picture')
     ]
