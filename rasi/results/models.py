@@ -18,8 +18,8 @@ class Results(models.Model):
         constraints=[
             models.CheckConstraint(
                 check=models.Q(resultado__in = ["positivo", "negativo", "inconcluso"],
-                               name = 'resultados_permitidos'
-                )
+                      
+                ),         name = 'resultados_permitidos'
             )
         ]
 
