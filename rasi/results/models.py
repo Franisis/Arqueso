@@ -1,12 +1,25 @@
 from django.db import models
+#from User.models import User
 
 # Create your models here.
 
-class Result(models.Model):
-    result = models.CharField(max_length=50, null = True)    
-    datetime = models.DateTimeField(auto_now_add=True)
-    meaurement = models.CharField(max_length=50, null = True)
-    apreciation = models.CharField(max_length=50, null = True)
+class Results(models.Model):
+    OPCIONES_RESULTADO = (
+        ("positivo", "positivo"),
+        ("negativo", "negativo"),
+        ("inconcluso", "inconcluso"),
+    )
+    identification = models.CharField(max_length=50)
+    result = models.CharField(max_length=50, choices=OPCIONES_RESULTADO)
+    medition = models.CharField(max_length=50)
+    apreciation = models.CharField(max_length=50)
+    
+    class Meta:
+        constraints=[
+            models.CheckConstraint(
+                check=models.Q(resultado__in = ["positivo", "negativo", "inconcluso"],
+                               name = 'resultados_permitidos'
+                )
+            )
+        ]
 
-def __str__(self):
-    return '%s %s' % (self.result, self.apreciation)

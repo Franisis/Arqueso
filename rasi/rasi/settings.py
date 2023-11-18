@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'registerUser',
     'User',
-    'results',
+    'Results',
+    
 ]
 
 MIDDLEWARE = [
@@ -79,8 +80,12 @@ WSGI_APPLICATION = 'rasi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'usuario-db',
+        'USER': 'jufeve',
+        'PASSWORD': '$momosArqueso',
+        'HOST': '10.113.208.3',
+        'PORT': '5432',
     }
 }
 

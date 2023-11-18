@@ -1,14 +1,13 @@
 from django import forms
-from .models import Result
+from .models import Results
 
-class ResultForm(forms.ModelForm):
+class resultsForm(forms.ModelForm):
     class Meta:
-        model = Result
+        model = Results
         fields = [
+            'identification',
             'result',
-            #datetime
-            'meaurement', 
+            'medition',
             'apreciation',
-
         ]
-        
+    
