@@ -9,6 +9,7 @@ class Results(models.Model):
     resultado = models.CharField(max_length=50 )
     medition = models.CharField(max_length=50)
     apreciation = models.CharField(max_length=50)
+    dateCreated = models.DateField(auto_now_add=True)
     
     class Meta:
         constraints=[
