@@ -10,16 +10,16 @@ from rasi.auth0backend import Auth0
 from social_core.backends.oauth import BaseOAuth2
 from social_core.backends.oauth import BaseAuth
 from rasi.settings import LOGIN_REDIRECT_URL
+from rasi.auth0backend import Auth0
 
 
-o = BaseAuth(redirect_uri=LOGIN_REDIRECT_URL)
-m = BaseOAuth2(o)
-auth0 = Auth0(m)
+
+
 
 # Create your views here.
 @login_required
 def resultGet(request):
-        r = auth0.getRole(request)
+        r = Auth0.getRole(request)
         if r == "admin" or r =="medic":
             if request.method=="GET":
                 results = rl.get_results()
@@ -29,7 +29,7 @@ def resultGet(request):
     
 @login_required
 def resultPost(request):
-    r = auth0.getRole(request)
+    r = Auth0.getRole(request)
     print(r)
     if r == "medic":
         if request.method=='POST':
