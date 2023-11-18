@@ -4,13 +4,11 @@ from django.db import models
 # Create your models here.
 
 class Results(models.Model):
-    OPCIONES_RESULTADO = (
-        ("positivo", "positivo"),
-        ("negativo", "negativo"),
-        ("inconcluso", "inconcluso"),
-    )
+    
     identification = models.CharField(max_length=50)
-    resultado = models.CharField(max_length=50, choices=OPCIONES_RESULTADO)
+    resultado = models.CharField(
+        max_length=50, 
+        )
     medition = models.CharField(max_length=50)
     apreciation = models.CharField(max_length=50)
     
