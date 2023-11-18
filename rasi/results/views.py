@@ -9,7 +9,9 @@ from django.contrib.auth.decorators import login_required
 from rasi.auth0backend import Auth0
 from social_core.backends.oauth import BaseOAuth2
 
-auth0 = Auth0(BaseOAuth2)
+m = BaseOAuth2()
+
+auth0 = Auth0(m)
 
 # Create your views here.
 @login_required
