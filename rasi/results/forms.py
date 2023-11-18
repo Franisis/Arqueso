@@ -6,7 +6,7 @@ class resultsForm(forms.ModelForm):
         model = Results
         fields = [
             'identification',
-            'resultado',
+            'result',
             'medition',
             'apreciation',
         ]
