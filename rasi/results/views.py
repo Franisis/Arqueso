@@ -5,28 +5,32 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .forms import resultsForm
 from django.contrib import messages
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from rasi.auth0backend import getRole
 
 # Create your views here.
-
+@login_required
 def resultGet(request):
+    role = getRole(request)
     if request.method=='GET':
         results = rl.get_results()
         results_dto = serializers.serialize('json', results)
         return HttpResponse(results_dto, "application/json" )
     
-    pass
-
+    
+@login_required
 def resultPost(request):
-    if request.method=='POST':
-        print(request)
-        form = resultsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.add_message(request, messages.SUCCESS, 'Succesfully created results')
-            return HttpResponseRedirect(reverse('resultPost'))
-        else: print(form.errors)
-    else:
-        form = resultsForm()
-    context = {'form': form,}
-    return HttpResponse(context)
+    r = getRole(request)
+    if r == "medic":
+        if request.method=='POST':
+            form = resultsForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.add_message(request, messages.SUCCESS, 'Succesfully created results')
+                return HttpResponseRedirect(reverse('resultPost'))
+            else: print(form.errors)
+        else:
+            form = resultsForm()
+        context = {'form': form,}
+        return HttpResponse(context)
 

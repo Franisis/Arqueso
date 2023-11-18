@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'registerUser',
     'User',
     'results',
+    'social_django',
+    
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,28 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Auth0 requirements
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "https://isis2503-sprints.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.120.87.239:80"
+SOCIAL_AUTH_TRAILING_SLASH = False  # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'isis2503-sprints.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'xbLQto2BvPZha6oalOulbK7zSt4uvhcc'
+SOCIAL_AUTH_AUTH0_SECRET = '806dh8NvOKfadte5bdkn3e5NAyXng9n1BIgQAvD3dVqxEvN0k1NqRdrVdR_OG7RO'
+
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile',
+    'email',
+    'role',
+]
+
+AUTHENTICATION_BACKENDS = {
+    'monitoring.auth0backend.Auth0',
+    'django.contrib.auth.backends.ModelBackend',
+}
+
+
+
+
