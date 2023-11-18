@@ -8,8 +8,12 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from rasi.auth0backend import Auth0
 from social_core.backends.oauth import BaseOAuth2
+from social_core.backends.oauth import OAuthAuth
+from rasi.settings import LOGIN_REDIRECT_URL
 
-m = BaseOAuth2()
+
+o = OAuthAuth(redirect_uri=LOGIN_REDIRECT_URL)
+m = BaseOAuth2(o)
 
 auth0 = Auth0(m)
 
