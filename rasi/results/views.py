@@ -17,16 +17,13 @@ from rasi.auth0backend import Auth0
 
 
 # Create your views here.
-@login_required
 def resultGet(request):
-        r = Auth0.getRole(request)
-        if r == "admin" or r =="medic":
-            print(request)
-            if request.method=="GET":
-                results = rl.get_results()
-                results_dto = serializers.serialize('json', results)
-                return HttpResponse(results_dto, "application/json" )
-    
+    print(request)
+    if request.method=="GET":
+        results = rl.get_results()
+        results_dto = serializers.serialize('json', results)
+        return HttpResponse(results_dto, "application/json" )
+
     
 @login_required
 def resultPost(request):
