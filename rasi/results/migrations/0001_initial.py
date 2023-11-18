@@ -23,6 +23,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='results',
-            constraint=models.CheckConstraint(check=models.Q(('resultado__in', ['positivo', 'negativo', 'inconcluso'])), name='resultados_permitidos'),
+            constraint=models.CheckConstraint(check=models.Q(('result__in', ['positivo', 'negativo', 'inconcluso'])), name='resultados_permitidos'),
         ),
     ]
