@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path('results/', views.resultGet, name = 'resultGet'),
-    path('resultsCreate/', csrf_exempt(views.resultPost), name = 'resultPost' ),
+    path('resultsCreate', csrf_exempt(views.resultPost), name = 'resultPost',  ),
     
 ]

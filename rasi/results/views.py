@@ -22,7 +22,7 @@ def resultPost(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Succesfully created results')
-            return HttpResponseRedirect(reverse('resultsCreate/'))
+            return HttpResponseRedirect(reverse('resultPost'))
         else: print(form.errors)
     else:
         form = resultsForm()
