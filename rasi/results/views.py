@@ -6,13 +6,15 @@ from .forms import resultsForm
 from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from rasi.auth0backend import getRole
+from rasi.auth0backend import Auth0
+from social_core.backends.oauth import BaseOAuth2
 
+auth0 = Auth0(BaseOAuth2)
 
 # Create your views here.
 @login_required
 def resultGet(request):
-        r = getRole(request)
+        r = auth0.getRole(request)
         if r == "admin" or r =="medic":
             if request.method=="GET":
                 results = rl.get_results()
@@ -22,7 +24,7 @@ def resultGet(request):
     
 @login_required
 def resultPost(request):
-    r = getRole(request)
+    r = auth0.getRole(request)
     print(r)
     if r == "medic":
         if request.method=='POST':
