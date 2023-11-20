@@ -25,6 +25,8 @@ def resultGet(request):
             results = rl.get_results()
             results_dto = serializers.serialize('json', results)
             return HttpResponse(results_dto, "application/json" )
+    else:
+        return render(request, "rasi/rasi/templates/index.html")
 
 def resultsGetM(request):
     if request.method=="GET":
