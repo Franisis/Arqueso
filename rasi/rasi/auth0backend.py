@@ -1,5 +1,6 @@
 import requests 
 from social_core.backends.oauth import BaseOAuth2
+import json
 
 class Auth0(BaseOAuth2):
     """Auth0 OAuth authentication backend"""
@@ -40,7 +41,7 @@ def getRole(request):
     headers = {'authorization': 'Bearer ' + accessToken}
     resp = requests.get(url, headers)
     print(resp)
-    userinfo = resp.json()
+    userinfo = json.load(resp)
     role = userinfo['isis2503-sprints.us.auth0.com']
     return (role)
 
