@@ -19,7 +19,7 @@ from rasi.auth0backend import getRole
 @login_required
 def resultGet(request):
     role = getRole(request)
-    if role == "medic" or role == "admin":
+    if role == "admin":
         print(request)
         if request.method=="GET":
             results = rl.get_results()
