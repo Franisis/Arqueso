@@ -41,7 +41,7 @@ def getRole(request):
     headers = {'authorization': 'Bearer ' + accessToken}
     resp = requests.get(url, headers)
     print(resp)
-    userinfo = json.load(resp)
+    userinfo = json.loads(resp)
     role = userinfo['isis2503-sprints.us.auth0.com']
     return (role)
 
