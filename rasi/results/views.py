@@ -26,6 +26,12 @@ def resultGet(request):
             results_dto = serializers.serialize('json', results)
             return HttpResponse(results_dto, "application/json" )
 
+def resultsGetM(request):
+    if request.method=="GET":
+            results = rl.get_results()
+            results_dto = serializers.serialize('json', results)
+            return HttpResponse(results_dto, "application/json" )
+    
     
 @login_required
 def resultPost(request):
