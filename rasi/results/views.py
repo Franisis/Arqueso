@@ -9,8 +9,7 @@ from django.contrib.auth.decorators import login_required
 from rasi.auth0backend import Auth0
 from social_core.backends.oauth import BaseOAuth2
 from social_core.backends.oauth import BaseAuth
-from rasi.settings import LOGIN_REDIRECT_URL
-from rasi.auth0backend import Auth0
+from rasi.auth0backend import getRole
 
 
 
@@ -23,11 +22,20 @@ def resultGet(request):
         results = rl.get_results()
         results_dto = serializers.serialize('json', results)
         return HttpResponse(results_dto, "application/json" )
-
+    
+@login_required
+def resultGetM(request):
+    r = getRole(request)
+    print(r)
+    if r =='admin' or r == 'medic':
+        results = rl.get_results()
+        results_dto = serializers.serialize('json', results)
+        return HttpResponse(results_dto, "application/json")
+    
     
 @login_required
 def resultPost(request):
-    r = Auth0.getRole(request)
+    r = getRole(request)
     print(r)
     if r == "medic":
         if request.method=='POST':

@@ -5,7 +5,7 @@ class Auth0(BaseOAuth2):
     """Auth0 OAuth authentication backend"""
     name = 'auth0'
     SCOPE_SEPARATOR = ' '
-    ACCESS_TOKEN_METHOD = 'GET'
+    ACCESS_TOKEN_METHOD = 'POST'
     EXTRA_DATA = [
         ('picture', 'picture')
     ]
@@ -32,14 +32,14 @@ class Auth0(BaseOAuth2):
                 'picture': userinfo['picture'],
                 'user_id': userinfo['sub']}
 
-    def getRole(request):
-        user = request.user
-        auth0user = user.social_auth.get(provider="auth0")
-        accessToken = auth0user.extra_data['access_token']
-        url = "https://isis2503-sprints.us.auth0.com"
-        headers = {'authorization': 'Bearer ' + accessToken}
-        resp = requests.get(url, headers=headers)
-        userinfo = resp.json()
-        role = userinfo['isis2503-sprints.us.auth0.com']
-        return (role)
+def getRole(request):
+    user = request.user
+    auth0user = user.social_auth.get(provider="auth0")
+    accessToken = auth0user.extra_data['access_token']
+    url = "https://isis2503-sprints.us.auth0.com"
+    headers = {'authorization': 'Bearer ' + accessToken}
+    resp = requests.get(url, headers=headers)
+    userinfo = resp.json()
+    role = userinfo['isis2503-sprints.us.auth0.com']
+    return (role)
 
