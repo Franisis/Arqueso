@@ -41,7 +41,7 @@ def getRole(request):
     accessToken = auth0user.extra_data['access_token']
     url = "https://isis2503-sprints.us.auth0.com"
     headers = {'authorization': 'Bearer ' + accessToken}
-    resp = requests.request(url=url, headers=headers)
+    resp = requests.get(url=url, headers=headers)
     print(auth0.get_user_details(resp))
     #print(resp.content, "T-T")
     print(json.JSONDecoder(resp))
