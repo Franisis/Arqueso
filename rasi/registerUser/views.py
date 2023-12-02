@@ -5,11 +5,13 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.core import serializers
+from rasi.auth0backend import getRole
 
 # Create your views here.
 
 def registers_userView(request):
-    if request.method == 'GET':
+    role=getRole(request)
+    if request.method == 'GET' and role=='admin':
         registers = rl.get_registers()
         registers_dto= serializers.serialize('json', registers)
         return HttpResponse(registers, 'application/json')
