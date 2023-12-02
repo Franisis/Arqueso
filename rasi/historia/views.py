@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
@@ -36,11 +37,24 @@ def get_historias(request):
     role = getRole(request)
     if role =="" and request.method=="GET":
         print(request)
-        results = get_histories()
-        results_dto = serializers.serialize('json', results)
-        return HttpResponse
+        historias = get_histories()
+        historias_dto = serializers.serialize('json', historias)
+        return HttpResponse(historias_dto, 'application/json')
 
     else:
         return render(request, "indi.html")
+    
+@login_required
+def get_history_by_cc(request):
+    role = getRole(request)
+    if role =="" and request.method=="GET":
+        cc = json.loads(request.body)['cc']
+        history = get_history_by_cc(cc)
+        history_dto = serializers.serialize('json', history)
+        return HttpResponse(history_dto, 'application/json')
+    else:
+        return render(request, "indi.html")
+            
+
 
         
