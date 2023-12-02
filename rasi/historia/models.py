@@ -8,7 +8,7 @@ class Historia(models.Model):
     cc = models.CharField(max_length=50)
     dateCreated = models.DateField(auto_now_add=True)
     duration = models.DecimalField(max_length=50)
-    date = models.DateField()
+    date = models.DateField( auto_now_add=False)
     time = models.CharField(max_length=50)
     motivo = models.CharField(max_length=50)
     
