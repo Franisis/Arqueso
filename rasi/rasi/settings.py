@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'User',
     'results',
     'social_django',
-
+    'historia',
+    
 ]
 
 MIDDLEWARE = [
