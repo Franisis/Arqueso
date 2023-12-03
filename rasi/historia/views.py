@@ -35,7 +35,7 @@ def get_historias(request):
         returns HttpResponse with all histories 
     """
     role = getRole(request)
-    if role =="" and request.method=="GET":
+    if role =="medic" and request.method=="GET":
         print(request)
         historias = get_histories()
         historias_dto = serializers.serialize('json', historias)
@@ -47,7 +47,7 @@ def get_historias(request):
 @login_required
 def get_history_by_cc(request):
     role = getRole(request)
-    if role =="" and request.method=="GET":
+    if role =="medic" and request.method=="GET":
         cc = json.loads(request.body)['cc']
         history = get_history_by_cc(cc)
         history_dto = serializers.serialize('json', history)
@@ -58,7 +58,7 @@ def get_history_by_cc(request):
 @login_required
 def update_history(request):
     role = getRole(request)
-    if role == "" and request.method=='PUT':
+    if role == "medic" and request.method=='PUT':
         cc = json.loads(request.body)['cc']
         history = update_history_reason(cc, request)
         history_dto = serializers.serialize('json', history)
