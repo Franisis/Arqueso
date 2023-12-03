@@ -7,7 +7,7 @@ class Historia(models.Model):
     iddbauthor = models.CharField(max_length=100)
     cc = models.CharField(max_length=50)
     dateCreated = models.DateField(auto_now_add=True)
-    duration = models.DecimalField(max_digits=10, decimal_places=None)
+    duration = models.DecimalField(max_digits=10, decimal_places=1)
     date = models.DateField( auto_now_add=False)
     time = models.CharField(max_length=50)
     motivo = models.CharField(max_length=50)
