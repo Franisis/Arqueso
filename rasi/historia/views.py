@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from rasi.auth0backend import getRole
 from .forms import HistoryForm
-from .logic.historia_logic import get_histories, get_history_by_cc
+from .logic.historia_logic import get_histories, get_history_by_cc, update_history_reason
 
 # Create your views here.
 
@@ -54,6 +54,22 @@ def get_history_by_cc(request):
         return HttpResponse(history_dto, 'application/json')
     else:
         return render(request, "indi.html")
+    
+@login_required
+def update_history(request):
+    role = getRole(request)
+    if role == "" and request.method=='PUT':
+        cc = json.loads(request.body)['cc']
+        history = update_history_reason(cc, request)
+        history_dto = serializers.serialize('json', history)
+        return HttpResponse(history_dto, 'application/json')
+    else:
+        return render(request, "indi.html")
+
+
+
+        
+
             
 
 
