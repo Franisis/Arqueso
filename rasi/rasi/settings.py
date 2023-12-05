@@ -81,16 +81,20 @@ WSGI_APPLICATION = 'rasi.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'usuario-db',
-        'USER': 'jufeve',
-        'PASSWORD': '$momosArqueso',
-        'HOST': '10.113.208.3',
-        'PORT': '5432',
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'usuario-db',
+    #     'USER': 'jufeve',
+    #     'PASSWORD': '$momosArqueso',
+    #     'HOST': '10.113.208.3',
+    #     'PORT': '5432',
+    # }
+     "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
+
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
