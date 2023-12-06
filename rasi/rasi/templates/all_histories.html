@@ -5,19 +5,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Todas las Historias</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .histories-container {
+            max-width: 600px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        p {
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <h2>Todas las Historias Registradas</h2>
     
-    {% if historias %}
-        <ul>
-            {% for historia in historias %}
-                <li>{{ historia.fields.iddbauthor }} - {{ historia.fields.cc }} - {{ historia.fields.motivo }} - <a href="{% url 'historyUpdate' %}?id={{ historia.pk }}">Actualizar</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hay historias registradas.</p>
-    {% endif %}
+    <div class="histories-container">
+        {% if historias %}
+            <ul>
+                {% for historia in historias %}
+                    <li>
+                        <span>{{ historia.fields.iddbauthor }} - {{ historia.fields.cc }} - {{ historia.fields.motivo }}</span>
+                        <a href="{% url 'historyUpdate' %}?id={{ historia.pk }}">Actualizar</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay historias registradas.</p>
+        {% endif %}
+    </div>
 
     <a href="{% url 'historyCreate' %}">Crear Nueva Historia</a>
 </body>
