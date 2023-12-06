@@ -31,6 +31,7 @@ def create_historia(request):
 
 def createHistoryPage(request):
     role = getRole(request)
+    print(role)
     if role =="medic":
         if request.method=="POST":
             return render(request, 'historyCreate.html')
