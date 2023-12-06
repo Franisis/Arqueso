@@ -6,8 +6,8 @@ from . import views
 urlpatterns = [
     
     path('histories/', views.get_historias, name = 'historyGet'),
-    path('registerHistory/', views.create_historia, name ="historyCreate "),
-    path('pageUpdateHistory/', views.createHistoryPage, name='createHistoryPage'),
-    path('updateHistory/', views.update_history_reason, name="historyUpdate"),
+    path('registerHistory/', views.create_historia, name ="historyCreate"),
+    path('pageUpdateHistory/', csrf_exempt(views.createHistoryPage), name='createHistoryPage'),
+    path('updateHistory/', csrf_exempt(views.update_history_reason), name="historyUpdate"),
 
 ]
