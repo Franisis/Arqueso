@@ -23,8 +23,18 @@ def create_historia(request):
                 form.save()
                 messages.add_message(request, messages.SUCCESS, 'Succesfully created results')
             return HttpResponseRedirect(reverse('historyCreate'))
+        else:
+            form = HistoryForm()
+            return render(request, 'historyCreate.html', {'form': form})
 
     pass
+
+def createHistoryPage(request):
+    role = getRole(request)
+    if role =="medic":
+        if request.method=="POST":
+            return render(request, 'historyCreate.html')
+
 
 @login_required
 def get_historias(request):
