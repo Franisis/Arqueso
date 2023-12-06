@@ -12,11 +12,13 @@
     {% if historias %}
         <ul>
             {% for historia in historias %}
-                <li>{{ historia.fields.iddbauthor }} - {{ historia.fields.cc }} - {{ historia.fields.motivo }}</li>
+                <li>{{ historia.fields.iddbauthor }} - {{ historia.fields.cc }} - {{ historia.fields.motivo }} - <a href="{% url 'historyUpdate' %}?id={{ historia.pk }}">Actualizar</a></li>
             {% endfor %}
         </ul>
     {% else %}
         <p>No hay historias registradas.</p>
     {% endif %}
+
+    <a href="{% url 'historyCreate' %}">Crear Nueva Historia</a>
 </body>
 </html>

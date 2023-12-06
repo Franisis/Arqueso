@@ -22,8 +22,6 @@ def create_historia(request):
             messages.add_message(request, messages.SUCCESS, 'Historia creada exitosamente')
             return HttpResponseRedirect(reverse('showAllHistories'))
         else:
-            # Manejar el caso en que el formulario no sea válido
-            # Puedes agregar lógica adicional o simplemente redirigir a la misma página
             return render(request, 'historyCreate.html', {'form': form})
 
     elif role == "medic" and request.method == "GET":

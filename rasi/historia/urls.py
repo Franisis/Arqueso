@@ -9,5 +9,6 @@ urlpatterns = [
     path('registerHistory/', views.create_historia, name ="historyCreate"),
     path('pageUpdateHistory/', csrf_exempt(views.createHistoryPage), name='createHistoryPage'),
     path('updateHistory/', csrf_exempt(views.update_history_reason), name="historyUpdate"),
+     path('showAllHistories/', views.show_all_histories, name='showAllHistories'),
 
 ]
