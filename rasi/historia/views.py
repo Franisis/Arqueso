@@ -15,17 +15,23 @@ from .logic.historia_logic import get_histories, get_history_by_cc, update_histo
 @login_required
 def create_historia(request):
     role = getRole(request)
-    if role =="medic":
-        print(request)
-        if request.method=="POST":
-            form = HistoryForm(request.POST)
-            if form.is_valid():
-                form.save()
-                messages.add_message(request, messages.SUCCESS, 'Succesfully created results')
-            return HttpResponseRedirect(reverse('historyCreate'))
+    if role == "medic" and request.method == "POST":
+        form = HistoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Historia creada exitosamente')
+            return HttpResponseRedirect(reverse('showAllHistories'))
         else:
-            form = HistoryForm()
+            # Manejar el caso en que el formulario no sea válido
+            # Puedes agregar lógica adicional o simplemente redirigir a la misma página
             return render(request, 'historyCreate.html', {'form': form})
+
+    elif role == "medic" and request.method == "GET":
+        form = HistoryForm()
+        return render(request, 'historyCreate.html', {'form': form})
+
+    else:
+        return render(request, 'indi.html')
 
     pass
 
@@ -43,6 +49,13 @@ def createHistoryPage(request):
     # Devolver una respuesta HttpResponse por defecto si el rol no es "medic"
     return HttpResponse("Unauthorized", status=401)
 
+def show_all_histories(request):
+    role = getRole(request)
+    if role == "medic":
+        historias = get_histories()
+        return render(request, 'all_histories.html', {'historias': historias})
+    else:
+        return render(request, 'indi.html')
 
 @login_required
 def get_historias(request):
