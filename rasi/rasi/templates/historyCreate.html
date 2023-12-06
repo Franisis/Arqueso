@@ -1,0 +1,38 @@
+<!-- templates/historia_form.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Historia de Usuario</title>
+</head>
+<body>
+    <h2>Crear Historia de Usuario</h2>
+    
+    <form method="POST" action="/registerHistory/">
+        {% csrf_token %}
+        
+        <label for="iddbauthor">ID del Autor:</label>
+        <input type="text" name="iddbauthor" required>
+        
+        <label for="cc">CC:</label>
+        <input type="text" name="cc" required>
+        
+        <label for="duration">Duración:</label>
+        <input type="number" name="duration" required>
+        
+        <label for="date">Fecha:</label>
+        <input type="date" name="date" required>
+        
+        <label for="time">Hora:</label>
+        <input type="text" name="time" required>
+        
+        <label for="motivo">Motivo:</label>
+        <input type="text" name="motivo" required>
+        
+        <button type="submit">Crear Historia de Usuario</button>
+    </form>
+</body>
+</html>
