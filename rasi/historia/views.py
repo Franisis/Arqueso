@@ -32,9 +32,16 @@ def create_historia(request):
 def createHistoryPage(request):
     role = getRole(request)
     print(role)
-    if role =="medic":
-        if request.method=="POST":
+    if role == "medic":
+        if request.method == "POST":
+            # Procesar lógica del formulario si es POST
             return render(request, 'historyCreate.html')
+        else:
+            # Renderizar el formulario si es GET
+            return render(request, 'historyCreate.html')
+    
+    # Devolver una respuesta HttpResponse por defecto si el rol no es "medic"
+    return HttpResponse("Unauthorized", status=401)
 
 
 @login_required
